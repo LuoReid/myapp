@@ -1,3 +1,4 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/NewRoute.dart';
 import 'package:myapp/RouterTestRoute.dart';
@@ -120,34 +121,43 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
-            FlatButton(
-              child: Text('open new route'),
-              textColor: Colors.blue,
-              onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return NewRoute();
-                // }));
-                // Navigator.pushNamed(context, 'new_page');
-                Navigator.of(context).pushNamed('new_page', arguments: 'hi');
-              },
-            ),
-            FlatButton(
-              child: Text('test'),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return RouterTestRoute();
-                }));
-              },
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+            RandomWordsWidget(),
+                        FlatButton(
+                          child: Text('open new route'),
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            //   return NewRoute();
+                            // }));
+                            // Navigator.pushNamed(context, 'new_page');
+                            Navigator.of(context).pushNamed('new_page', arguments: 'hi');
+                          },
+                        ),
+                        FlatButton(
+                          child: Text('test'),
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return RouterTestRoute();
+                            }));
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: _incrementCounter,
+                    tooltip: 'Increment',
+                    child: Icon(Icons.add),
+                  ), // This trailing comma makes auto-formatting nicer for build methods.
+                );
+              }
+            }
+            
+            class RandomWordsWidget  extends StatelessWidget{
+              @override 
+              Widget build(BuildContext context){
+                final wordPair = new WordPair.random();
+                return Padding(padding: const EdgeInsets.all(8.0),child: new Text(wordPair.toString()),);
+              }
 }
